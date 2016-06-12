@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+    <div class="container">
+		<h:form>
+			<h:dataTable class="table table-striped"
+				value="#{eventManagedBean.listEvents}" var="s">
+
+				<h:column>
+					<f:facet name="header">Event</f:facet>
+					<h:outputText value="#{s.eventName}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Année</f:facet>
+					<h:outputText value="#{s.year}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Ville</f:facet>
+					<h:outputText value="#{s.address.city}" />
+				</h:column>
+						
+				
+				<h:column>
+				
+					<h:commandButton styleClass="btn btn-warning"
+						action="#{eventManagedBean.showSpecificEvent(s.id)}"
+						value=">>> Voir"/>
+
+				  </h:column>
+				  
+				  <h:column>
+					<h:commandLink
+					    action="#{eventManagedBean.deleteEvent(s.id)}"
+					    styleClass="btn btn-danger">
+					    <span class="glyphicon glyphicon-remove block-center"></span>
+					</h:commandLink>
+				  </h:column>
+
+			</h:dataTable>
+		</h:form>
+    
+    </div>
+    <div class="container">
+    	<h1>Ajout d'un event</h1>
+    	<h:form id="formAddEve">
+    		<table class="table">
+				<tr>
+				<td align="right"><b>Event </b></td>
+				<td><h:inputText id="eventName" class="form-control" value="#{eventManagedBean.eventName}"/></td>
+				</tr>
+
+				<tr>
+					<td align="right"><b>Année </b></td>
+					<td><h:inputText id="year" class="form-control" value="#{eventManagedBean.year}" maxlength="4"/></td>
+				</tr>
+
+				<tr>
+				<td align="right"><b>Téléphone </b></td>
+				<td><h:inputText id="phoneNumber" class="form-control" value="#{eventManagedBean.phoneNumber}"/></td>
+				</tr>
+
+				<tr>
+				<td align="right"><b>E-mail </b></td>
+				<td><h:inputText required="true" id="mail" class="form-control" value="#{eventManagedBean.mail}"/></td>
+				</tr>
+				
+				<tr>
+					<td align="right"><b>Rue </b></td>
+					<td>
+						<h:inputText id="street" class="form-control" value="#{eventManagedBean.street}"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><b>Numéro de rue </b></td>
+					<td>
+						<h:inputText id="number" class="form-control" value="#{eventManagedBean.number}" maxlength="3"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td align="right"><b>NPA </b></td>
+					<td>
+						<h:inputText id="postalCode" class="form-control" value="#{eventManagedBean.postalCode}" maxlength="4"/>  
+					</td>
+				</tr>
+				<tr>
+				<td align="right"><b>Localité </b></td>
+					<td>
+						<h:inputText id="city" class="form-control" value="#{eventManagedBean.city}"/>
+					</td>
+				</tr>			
+			</table>
+				<h:commandLink
+					action="#{eventManagedBean.addEvent()}"
+					styleClass="btn btn-success center-block">
+					<span class="glyphicon glyphicon-plus"></span>
+				</h:commandLink>
+			</h:form>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+    </div>
+	</ui:define>
+</ui:composition>
+
+</html>

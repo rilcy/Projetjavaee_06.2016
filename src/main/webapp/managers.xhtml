@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+    <div class="container">
+		<h:form>
+			<h:dataTable class="table table-striped"
+				value="#{managerManagedBean.listManagers}" var="s">
+
+				<h:column>
+					<f:facet name="header">Nom de famille</f:facet>
+					<h:outputText value="#{s.lastname}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Prénom</f:facet>
+					<h:outputText value="#{s.firstname}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Function</f:facet>
+					<h:outputText value="#{s.function}" />
+				</h:column>
+								
+				<h:column>
+				
+					<h:commandButton styleClass="btn btn-info"
+						action="#{managerManagedBean.showSpecificManager(s.id)}"
+						value=">>> Voir"/>
+
+				  </h:column>
+				  
+				  <h:column>
+					<h:commandLink
+					    action="#{managerManagedBean.deleteManager(s.id)}"
+					    styleClass="btn btn-danger">
+					    <span class="glyphicon glyphicon-remove"></span>
+					</h:commandLink>
+				  </h:column>
+
+			</h:dataTable>
+		</h:form>
+    
+    </div>
+    <div class="container">
+    	<h1>Ajout d'un manager</h1>
+    	<h:form id="formAddMan">
+    		<table class="table">
+				<tr>
+				<td align="right"><b>Nom</b></td>
+				<td><h:inputText id="lastname" class="form-control" value="#{managerManagedBean.lastname}"/></td>
+				</tr>
+
+				<tr>
+					<td align="right"><b>Prénom </b></td>
+					<td><h:inputText id="firstname" class="form-control" value="#{managerManagedBean.firstname}"/></td>
+				</tr>
+
+				
+				<tr>
+				<td align="right"><b>Fonction </b></td>
+				<td><h:inputText id="function" class="form-control" value="#{managerManagedBean.function}"/></td>
+				</tr>
+
+				<tr>
+				<td align="right"><b>Téléphone </b></td>
+				<td><h:inputText id="phoneNumber" class="form-control" value="#{managerManagedBean.phoneNumber}"/></td>
+				</tr>
+
+				<tr>
+				<td align="right"><b>E-mail </b></td>
+				<td><h:inputText id="mail" class="form-control" value="#{managerManagedBean.mail}"/></td>
+				</tr>		
+			</table>
+				<h:commandLink
+					action="#{managerManagedBean.addManager()}"
+					styleClass="btn btn-info center-block">
+					<span class="glyphicon glyphicon-plus"></span>
+				</h:commandLink>
+			</h:form>
+			<br></br>
+			<br></br>
+			<br></br>
+			<br></br>
+    </div>
+	</ui:define>
+</ui:composition>
+
+</html>

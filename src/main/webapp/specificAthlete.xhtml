@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<h:form id="formModifyAth">
+
+				<h1>
+					Infos de l'athlète
+					<h:outputText value=" #{athleteManagedBean.myAthlete.firstname}" />
+					<h:outputText value=" #{athleteManagedBean.myAthlete.lastname}" />
+				</h1>
+
+				<div class="well well-lg">
+					<table class="table">
+						<tr>
+							<td><b>Prénom</b></td>
+							<td><h:inputText id="firstname" class="form-control"
+									value="#{athleteManagedBean.myAthlete.firstname}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Nom</b></td>
+							<td><h:inputText id="lastname" class="form-control"
+									value="#{athleteManagedBean.myAthlete.lastname}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Sexe</b></td>
+							<td><h:inputText id="sex" class="form-control" readonly="true"
+									value="#{athleteManagedBean.myAthlete.sex}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Club</b></td>
+							<td><h:inputText id="club" class="form-control"
+									value="#{athleteManagedBean.myAthlete.club}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Téléphone</b></td>
+							<td><h:inputText id="phoneNumber" class="form-control"
+									value="#{athleteManagedBean.myAthlete.contact.phoneNumber}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>E-mail</b></td>
+							<td><h:inputText id="mail" class="form-control"
+									value="#{athleteManagedBean.myAthlete.contact.mail}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Rue / numéro</b></td>
+							<td><h:inputText id="street" class="form-control"
+									value="#{athleteManagedBean.myAthlete.address.street}" /> <h:inputText
+									id="number" class="form-control"
+									value="#{athleteManagedBean.myAthlete.address.number}" maxlength="3" /></td>
+						</tr>
+
+						<tr>
+							<td><b>NPA / Localité</b></td>
+							<td><h:inputText id="postalCode" class="form-control"
+									value="#{athleteManagedBean.myAthlete.address.postalCode}" maxlength="4" />
+								<h:inputText id="city" class="form-control"
+									value="#{athleteManagedBean.myAthlete.address.city}" /></td>
+						</tr>
+					</table>
+					<h:commandLink action="#{athleteManagedBean.modifyAthlete()}"
+						styleClass="btn btn-warning center-block">
+						<span class="glyphicon glyphicon-edit " />
+					</h:commandLink>
+				</div>
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

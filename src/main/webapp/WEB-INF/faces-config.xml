@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<managed-bean>
+		<managed-bean-name>athleteManagedBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.AthleteManagedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>managerManagedBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.ManagerManagedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>eventManagedBean</managed-bean-name>
+		<managed-bean-class>ch.hevs.managedbeans.EventManagedBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+
+	<!-- Lien entre welcome.xhtml et les autres pages principales -->
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>managers</from-outcome>
+			<to-view-id>/managers.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>events</from-outcome>
+			<to-view-id>/events.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>/welcome.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>athletes</from-outcome>
+			<to-view-id>/athletes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Lien permattant de montrer un athlète depuis athletes.xhtml -->
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{athleteManagedBean.showSpecificAthlete(s.id)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/specificAthlete.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{athleteManagedBean.showSpecificAthlete(s.id)}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Suppression d'un athlète depuis athletes.xhtml -->
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{deleteAthlete(s.id)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/athletes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{deleteAthlete(s.id)}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/athletes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Ajout d'un athlète depuis athletes.xhtml -->
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{addAthlete()}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/athletes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>athletes.xhtml</display-name>
+		<from-view-id>/athletes.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{addAthlete()}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/athletes.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+	<!-- Lien permattant de montrer un manager depuis managers.xhtml -->
+	<navigation-rule>
+		<display-name>managers.xhtml</display-name>
+		<from-view-id>/managers.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{managerManagedBean.showSpecificManager(s.id)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/specificManager.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>managers.xhtml</display-name>
+		<from-view-id>/managers.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{managerManagedBean.showSpecificManager(s.id)}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Lien permettant de montrer un event spécifique depuis events.xhtml -->
+	<navigation-rule>
+		<display-name>events.xhtml</display-name>
+		<from-view-id>/events.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.showSpecificEvent(s.id)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/specificEvent.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>events.xhtml</display-name>
+		<from-view-id>/events.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.showSpecificEvent(s.id)}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/welcome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Ajout d'un manager à un event -->
+	<navigation-rule>
+		<display-name>specificEvent.xhtml</display-name>
+		<from-view-id>/specificEvent.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.addManagerToEvent()}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/specificEvent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>specificEvent.xhtml</display-name>
+		<from-view-id>/specificEvent.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.addManagerToEvent()}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/specificEvent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Ajout d'une athlète à un event avec un temps -->
+	<navigation-rule>
+		<display-name>specificEvent.xhtml</display-name>
+		<from-view-id>/specificEvent.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.addAthleteTimeToEvent()}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/specificEvent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>specificEvent.xhtml</display-name>
+		<from-view-id>/specificEvent.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{eventManagedBean.addAthleteTimeToEvent()}</from-action>
+			<from-outcome>stop</from-outcome>
+			<to-view-id>/specificEvent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+
+
+</faces-config>

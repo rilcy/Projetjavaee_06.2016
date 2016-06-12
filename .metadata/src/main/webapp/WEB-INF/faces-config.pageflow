@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14141592409490" configfile="/ProjetJAVAEE/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="48" y="132" id="pf14651194157790" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14651194157791 pf14657274490688 pf14657275803639" inlinks="pf146532518071212 pf14654977414767 pf14656337666878" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="athletes.xhtml" x="348" y="120" id="pf14651194157792" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" outlinks="pf146532427335310 pf146532518071212 pf146536577395913 pf146536771961814 pf146537312119015 pf146537312119016" inlinks="pf14651194157791 pf146536577395913 pf146536771961814 pf146537312119015 pf146537312119016" path="/athletes.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="specificAthlete.xhtml" x="696" y="84" id="pf146532427335311" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf146532427335310" path="/specificAthlete.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="managers.xhtml" x="186" y="240" id="pf14654774208991" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf14654977192734 pf14654977414767" inlinks="pf14657275803639" path="/managers.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="specificManager.xhtml" x="414" y="240" id="pf14654977192735" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf14654977192734" path="/specificManager.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="events.xhtml" x="156" y="372" id="pf14656337567965" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf14656337567966 pf14656337666878" inlinks="pf14657274490688" path="/events.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="specificEvent.xhtml" x="432" y="372" id="pf14656337567967" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" outlinks="pf14657196853232 pf14657226345285 pf14657272505416 pf14657272505417" inlinks="pf14656337567966 pf14657196853232 pf14657226345285 pf14657272505416 pf14657272505417" path="/specificEvent.xhtml"/>
+  <links id="pf14651194157791" target="pf14651194157792" source="pf14651194157790" outcome="athletes"/>
+  <links id="pf146532427335310" target="pf146532427335311" source="pf14651194157792" outcome="ok" redirect="true" fromaction="#{athleteManagedBean.showSpecificAthlete(s.id)}"/>
+  <links id="pf146532518071212" target="pf14651194157790" source="pf14651194157792" outcome="stop" redirect="true" fromaction="#{athleteManagedBean.showSpecificAthlete(s.id)}"/>
+  <links id="pf146536577395913" target="pf14651194157792" source="pf14651194157792" outcome="ok" fromaction="#{deleteAthlete(s.id)}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf146536771961814" target="pf14651194157792" source="pf14651194157792" outcome="stop" fromaction="#{deleteAthlete(s.id)}">
+    <bendPoints d1Height="-66" d2Height="-66"/>
+    <bendPoints d1Width="-94" d1Height="-66" d2Width="-94" d2Height="-66"/>
+    <bendPoints d1Width="-94" d2Width="-94"/>
+  </links>
+  <links id="pf146537312119015" target="pf14651194157792" source="pf14651194157792" outcome="ok" fromaction="#{addAthlete()}">
+    <bendPoints d1Height="-96" d2Height="-96"/>
+    <bendPoints d1Width="-124" d1Height="-96" d2Width="-124" d2Height="-96"/>
+    <bendPoints d1Width="-124" d2Width="-124"/>
+  </links>
+  <links id="pf146537312119016" target="pf14651194157792" source="pf14651194157792" outcome="stop" fromaction="#{addAthlete()}">
+    <bendPoints d1Height="-126" d2Height="-126"/>
+    <bendPoints d1Width="-154" d1Height="-126" d2Width="-154" d2Height="-126"/>
+    <bendPoints d1Width="-154" d2Width="-154"/>
+  </links>
+  <links id="pf14654977192734" target="pf14654977192735" source="pf14654774208991" outcome="ok" redirect="true" fromaction="#{managerManagedBean.showSpecificManager(s.id)}"/>
+  <links id="pf14654977414767" target="pf14651194157790" source="pf14654774208991" outcome="stop" redirect="true" fromaction="#{managerManagedBean.showSpecificManager(s.id)}"/>
+  <links id="pf14656337567966" target="pf14656337567967" source="pf14656337567965" outcome="ok" redirect="true" fromaction="#{eventManagedBean.showSpecificEvent(s.id)}"/>
+  <links id="pf14656337666878" target="pf14651194157790" source="pf14656337567965" outcome="stop" redirect="true" fromaction="#{eventManagedBean.showSpecificEvent(s.id)}"/>
+  <links id="pf14657196853232" target="pf14656337567967" source="pf14656337567967" outcome="ok" fromaction="#{eventManagedBean.addManagerToEvent()}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf14657226345285" target="pf14656337567967" source="pf14656337567967" outcome="stop" fromaction="#{eventManagedBean.addManagerToEvent()}"/>
+  <links id="pf14657272505416" target="pf14656337567967" source="pf14656337567967" outcome="ok" fromaction="#{eventManagedBean.addAthleteTimeToEvent()}"/>
+  <links id="pf14657272505417" target="pf14656337567967" source="pf14656337567967" outcome="stop" fromaction="#{eventManagedBean.addAthleteTimeToEvent()}"/>
+  <links id="pf14657274490688" target="pf14656337567965" source="pf14651194157790" outcome="events"/>
+  <links id="pf14657275803639" target="pf14654774208991" source="pf14651194157790" outcome="managers"/>
+</pageflow:Pageflow>

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<h:form>
+				<h:dataTable class="table table-striped"
+					value="#{athleteManagedBean.listAthletes}" var="s">
+
+					<h:column>
+						<f:facet name="header">Nom de famille</f:facet>
+						<h:outputText value="#{s.lastname}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Prénom</f:facet>
+						<h:outputText value="#{s.firstname}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Club</f:facet>
+						<h:outputText value="#{s.club}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Sexe</f:facet>
+						<h:outputText value="#{s.sex}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Ville</f:facet>
+						<h:outputText value="#{s.address.city}" />
+					</h:column>
+
+					<h:column>
+
+						<h:commandButton styleClass="btn btn-success"
+							action="#{athleteManagedBean.showSpecificAthlete(s.id)}"
+							value=">>> Voir" />
+
+					</h:column>
+
+					<h:column>
+						<h:commandLink action="#{athleteManagedBean.deleteAthlete(s.id)}"
+							styleClass="btn btn-danger">
+							<span class="glyphicon glyphicon-remove block-center"></span>
+						</h:commandLink>
+					</h:column>
+
+				</h:dataTable>
+			</h:form>
+
+		</div>
+		<div class="container">
+			<h1>Ajout d'un athlète</h1>
+			<h:form id="formAddAth">
+				<table class="table">
+					<tr>
+						<td align="right"><b>Nom</b></td>
+						<td><h:inputText id="lastname" class="form-control"
+								value="#{athleteManagedBean.lastname}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Prénom </b></td>
+						<td><h:inputText id="firstname" class="form-control"
+								value="#{athleteManagedBean.firstname}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Sexe </b></td>
+						<td>
+							<h:selectOneListbox class="form-control"
+						value="#{athleteManagedBean.sex}" onchange="submit()">
+								<f:selectItems value="#{athleteManagedBean.listSex}" />
+							</h:selectOneListbox>
+						</td>
+						
+					</tr>
+					<tr>
+						<td align="right"><b>Club </b></td>
+						<td><h:inputText id="club" class="form-control"
+								value="#{athleteManagedBean.club}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Téléphone </b></td>
+						<td><h:inputText id="phoneNumber" class="form-control"
+								value="#{athleteManagedBean.phoneNumber}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>E-mail </b></td>
+						<td><h:inputText id="mail" class="form-control"
+								value="#{athleteManagedBean.mail}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Rue </b></td>
+						<td><h:inputText id="street" class="form-control"
+								value="#{athleteManagedBean.street}" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Numéro de rue </b></td>
+						<td><h:inputText id="number" class="form-control"
+								value="#{athleteManagedBean.number}" maxlength="3" /></td>
+					</tr>
+
+					<tr>
+						<td align="right"><b>NPA </b></td>
+						<td><h:inputText id="postalCode" class="form-control"
+								value="#{athleteManagedBean.postalCode}" maxlength="4" /></td>
+					</tr>
+					<tr>
+						<td align="right"><b>Localité </b></td>
+						<td><h:inputText id="city" class="form-control"
+								value="#{athleteManagedBean.city}" /></td>
+					</tr>
+				</table>
+				<h:commandLink action="#{athleteManagedBean.addAthlete()}"
+					styleClass="btn btn-success center-block">
+					<span class="glyphicon glyphicon-plus"></span>
+				</h:commandLink>
+			</h:form>
+			<br></br> <br></br> <br></br> <br></br>
+		</div>
+	</ui:define>
+</ui:composition>
+
+</html>

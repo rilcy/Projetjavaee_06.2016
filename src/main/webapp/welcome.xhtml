@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+
+	<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	    <ui:define name="content">
+		    <div class="container">
+		      <div class="row">
+			    <div class="col-sm-4">
+			      <h3>Athlètes</h3>
+			      <p>Retrouvez dans cette section toutes les informations relatives aux athèles participant à nos courses</p>
+			      	<h:form>
+						<h:commandLink action="athletes" styleClass="btn btn-success">
+					    	<span class="glyphicon glyphicon-menu-right"/> Voir les athlètes
+					    </h:commandLink>
+					</h:form>
+			    </div>
+			    <div class="col-sm-4">
+			      <h3>Managers</h3> 
+    			     <p>Chaque event possède ses propres managers avec leur fonction. Découvrez-les !</p>
+			      	<h:form>
+						<h:commandLink action="managers" styleClass="btn btn-info">
+					    	<span class="glyphicon glyphicon-menu-right"/> Voir les managers
+					    </h:commandLink>
+					</h:form>
+			    </div>
+			    <div class="col-sm-4">
+			      <h3>Events</h3> 
+    			     <p>Toutes les courses sont répertoriées ici. Découvrez les classements.</p>
+			      	<h:form>
+						<h:commandLink action="events" styleClass="btn btn-warning">
+					    	<span class="glyphicon glyphicon-menu-right"/> Voir les events
+					    </h:commandLink>
+					</h:form>
+			    </div>
+			  </div>
+		  	</div>
+		</ui:define>
+	</ui:composition>
+
+</html>

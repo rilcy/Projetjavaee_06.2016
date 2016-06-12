@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<h:form id="formModifyManager">
+				<h1>
+					Infos du manager
+					<h:outputText value=" #{managerManagedBean.myManager.firstname}" />
+					<h:outputText value=" #{managerManagedBean.myManager.lastname}" />
+				</h1>
+				<div class="well well-lg">
+					<table class="table">
+						<tr>
+							<td><b>Prénom</b></td>
+							<td><h:inputText id="firstname" class="form-control" 
+									value="#{managerManagedBean.myManager.firstname}" /></td>
+						</tr>
+						<tr>
+							<td><b>Nom</b></td>
+							<td><h:inputText id="lastname" class="form-control" 
+									value="#{managerManagedBean.myManager.lastname}" /></td>
+						</tr>
+						<tr>
+							<td><b>Function</b></td>
+							<td><h:inputText id="function" class="form-control" 
+									value="#{managerManagedBean.myManager.function}" /></td>
+						</tr>
+						<tr>
+							<td><b>Téléphone</b></td>
+							<td><h:inputText id="phoneNumber" class="form-control" 
+									value="#{managerManagedBean.myManager.contact.phoneNumber}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>E-mail</b></td>
+							<td><h:inputText id="mail" class="form-control" 
+									value="#{managerManagedBean.myManager.contact.mail}" /></td>
+						</tr>
+					</table>
+						<h:commandLink action="#{managerManagedBean.modifyManager()}"
+							styleClass="btn btn-warning center-block">
+							<span class="glyphicon glyphicon-edit" />
+						</h:commandLink>
+				</div>
+			</h:form>
+		</div>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+	</ui:define>
+</ui:composition>
+
+</html>

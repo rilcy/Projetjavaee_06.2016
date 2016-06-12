@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<div class="container">
+			<h:form id="formModifyEvent">
+
+				<h1>
+					Infos de l'event
+					<h:outputText value=" #{eventManagedBean.myEvent.eventName}" />
+				</h1>
+
+				<div class="well well-lg">
+					<table class="table">
+
+						<tr>
+							<td><b>Nom de l'event</b></td>
+							<td><h:inputText id="name" class="form-control"
+									value="#{eventManagedBean.myEvent.eventName}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Year</b></td>
+							<td><h:inputText id="year" class="form-control"
+									value="#{eventManagedBean.myEvent.year}" maxlength="4" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Téléphone</b></td>
+							<td><h:inputText id="phoneNumber" class="form-control"
+									value="#{eventManagedBean.myEvent.contact.phoneNumber}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>E-mail</b></td>
+							<td><h:inputText id="mail" class="form-control"
+									value="#{eventManagedBean.myEvent.contact.mail}" /></td>
+						</tr>
+
+						<tr>
+							<td><b>Rue / numéro</b></td>
+							<td><h:inputText id="street" class="form-control"
+									value="#{eventManagedBean.myEvent.address.street}" /> <h:inputText
+									id="number" class="form-control"
+									value="#{eventManagedBean.myEvent.address.number}"
+									maxlength="3" /></td>
+						</tr>
+
+						<tr>
+							<td><b>NPA / Localité</b></td>
+							<td><h:inputText id="postalCode" class="form-control"
+									value="#{eventManagedBean.myEvent.address.postalCode}"
+									maxlength="4" /> <h:inputText id="city" class="form-control"
+									value="#{eventManagedBean.myEvent.address.city}" /></td>
+						</tr>
+					</table>
+					<h:commandLink action="#{eventManagedBean.modifyEvent()}"
+						styleClass="btn btn-warning center-block">
+						<span class="glyphicon glyphicon-edit" />
+					</h:commandLink>
+				</div>
+			</h:form>
+		</div>
+		<div class="container">
+			<h1>Managers de l'event</h1>
+			<div class="well well-lg">
+				<h:form>
+
+					<h:dataTable class="table table-striped"
+						value="#{eventManagedBean.listManagers}" var="c">
+
+						<h:column>
+							<f:facet name="header">Lastname</f:facet>
+							<h:outputText value="#{c.lastname}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Firstname</f:facet>
+							<h:outputText value="#{c.firstname}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Fonction</f:facet>
+							<h:outputText value="#{c.function}" />
+						</h:column>
+					</h:dataTable>
+
+				</h:form>
+				<h:form>
+
+					<h3>Ajout d'un manager à la compétition</h3>
+					<h:selectOneMenu class="form-control"
+						value="#{eventManagedBean.managerDescription}" onchange="submit()">
+						<f:selectItems value="#{eventManagedBean.managerDescriptions}" />
+					</h:selectOneMenu>
+					<h:commandLink action="#{eventManagedBean.addManagerToEvent()}"
+						styleClass="btn btn-success center-block">
+						<span class="glyphicon glyphicon-plus"></span>
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>
+		<div class="container">
+			<h1>Résultat de l'event</h1>
+			<div class="well well-lg">
+				<h:form>
+
+					<h:dataTable class="table table-striped"
+						value="#{eventManagedBean.listAthletes}" var="s">
+
+						<h:column>
+							<f:facet name="header">Lastname</f:facet>
+							<h:outputText value="#{s.athLastname}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Firstname</f:facet>
+							<h:outputText value="#{s.athFirstname}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Temps</f:facet>
+							<h:outputText value="#{s.athTime}" />
+						</h:column>
+						<h:column>
+							<h:commandLink action="#{eventManagedBean.deleteTime(s.idTime)}"
+								styleClass="btn btn-danger">
+								<span class="glyphicon glyphicon-remove"></span>
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+				<h:form>
+					<h3>Ajout d'un athlète à la compétition</h3>
+					<h:selectOneMenu class="form-control"
+						value="#{eventManagedBean.athleteDescription}" onchange="submit()">
+						<f:selectItems value="#{eventManagedBean.athleteDescriptions}" />
+					</h:selectOneMenu>
+					<table class="table">
+						<tr>
+							<td align="right"><b>Temps de l'athlète (HH:MM:SS) </b></td>
+							<td><h:inputText id="time" class="form-control"
+									value="#{eventManagedBean.time}" maxlength="8" /></td>
+						</tr>
+					</table>
+
+					<h:commandLink action="#{eventManagedBean.addAthleteTimeToEvent()}"
+						styleClass="btn btn-success center-block">
+						<span class="glyphicon glyphicon-plus"></span>
+					</h:commandLink>
+				</h:form>
+			</div>
+		</div>
+		<br></br>
+		<br></br>
+		<br></br>
+		<br></br>
+
+	</ui:define>
+</ui:composition>
+
+</html>
